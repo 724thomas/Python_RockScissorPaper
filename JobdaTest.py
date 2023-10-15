@@ -133,5 +133,3 @@ def rsp():
             elif im2 == yRock: #상대 바위
                 keyboard.press_and_release('right') #보
 
-rsp()
-
