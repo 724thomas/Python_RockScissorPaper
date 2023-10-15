@@ -226,30 +226,17 @@ def nextClip():  # 다음 클립으로 넘어가기
     mousePos((900, 993))
     time.sleep(0.5)
     NleftClick(156, 1061, 2)
-    time.sleep(5)
+    time.sleep(2)
 
 
-def all_in_one():
-    save_directory = "E:\패스트캠퍼스 강의"
-    # 영상 큰 제목 입력
-    directory = changeName(input("title : "))
-    # 영상 작은 제목 입력
-    sub_directory = changeName(input("subdirectory(Part) : "))
-    # 영상 작은 제목 입력
-    sub_sub_directory = changeName(input("subsubdirectory(Chapter) : "))
-    final_directory = createFolder(save_directory, directory, sub_directory, sub_sub_directory)
 
-    # 파일 갯수 입력
-    filenames = []
-    for i in range(int(input("몇개의 파일인가요?"))):
-        # 파일 이름 입력
-        filenames.append(changeName(input("파일 이름을 입력하세요 : ")) + ".mp4")
 
-    time.sleep(10)
+
+def all_in_one(save_directory, title, part, chapter, filenames):
+    final_directory = createFolder(save_directory, title, part, chapter)
 
     for i in range(len(filenames)):
-        # Disbale JavaScript
-        toggleJavaScript()
+        toggleJavaScript()  # Disbale JavaScript
         time.sleep(1)
 
         NrightClick(501, 610, 2)
@@ -270,12 +257,37 @@ def all_in_one():
         keyboard.press_and_release('enter')
         time.sleep(1)
 
-        toggleJavaScript()
+        toggleJavaScript()  # Enable JavaScript
         time.sleep(1)
         nextClip()
-        time.sleep(3)
-        NleftClick(621,625,2)
+        time.sleep(2)
+        NleftClick(621, 625, 2)
         time.sleep(3)
 
-all_in_one()
+
+def chapter_all_in_one():
+    save_directory = "E:\패스트캠퍼스 강의"
+    # 영상 큰 제목 입력
+    directory = changeName(input("title : "))
+    # 영상 작은 제목 입력
+    part = changeName(input("subdirectory(Part) : "))
+    # 영상 작은 제목 입력
+    chapters = []
+    filenames = []
+    for i in range(int(input("몇개의 챕터인가요?"))):
+        chapters.append(changeName(input("챕터 이름을 입력하세요 : ")))
+        chapter_file = []
+        for j in range(int(input("몇개의 파일인가요?"))):
+            chapter_file.append(changeName(input("파일 이름을 입력하세요 : ")) + ".mp4")
+        filenames.append(chapter_file)
+
+    time.sleep(10)
+
+    for i in range(len(chapters)):
+        print("Current Directory : " + save_directory + "\\" + directory + "\\" + part + "\\" + chapters[i])
+        print(filenames[i])
+        all_in_one(save_directory, directory, part, chapters[i], filenames[i])
+
+chapter_all_in_one()
+
 # 좌표구하기2()
