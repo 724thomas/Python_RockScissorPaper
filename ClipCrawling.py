@@ -184,6 +184,8 @@ def changeName(string):
         string = string.replace("!", "")
     while "," in string:
         string = string.replace(",", "")
+    while "/" in string:
+        string = string.replace("/", "")
     while string[-1] in "0123456789:":  # 마지막 글자가 숫자나 : 일때
         string = string[:-1]
     return string
@@ -229,9 +231,6 @@ def nextClip():  # 다음 클립으로 넘어가기
     time.sleep(2)
 
 
-
-
-
 def all_in_one(save_directory, title, part, chapter, filenames):
     final_directory = createFolder(save_directory, title, part, chapter)
 
@@ -262,13 +261,13 @@ def all_in_one(save_directory, title, part, chapter, filenames):
         nextClip()
         time.sleep(2)
         NleftClick(621, 625, 2)
+        print("Saved " + filenames[i] + " in " + final_directory)
         time.sleep(3)
 
 
-def chapter_all_in_one():
-    save_directory = "E:\패스트캠퍼스 강의"
+def chapter_all_in_one(save_directory):
     # 영상 큰 제목 입력
-    directory = changeName(input("title : "))
+    title = changeName(input("title : "))
     # 영상 작은 제목 입력
     part = changeName(input("subdirectory(Part) : "))
     # 영상 작은 제목 입력
@@ -280,14 +279,44 @@ def chapter_all_in_one():
         for j in range(int(input("몇개의 파일인가요?"))):
             chapter_file.append(changeName(input("파일 이름을 입력하세요 : ")) + ".mp4")
         filenames.append(chapter_file)
+        print("")
 
     time.sleep(10)
 
     for i in range(len(chapters)):
-        print("Current Directory : " + save_directory + "\\" + directory + "\\" + part + "\\" + chapters[i])
+        print("Current Directory : " + save_directory + "\\" + title + "\\" + part + "\\" + chapters[i])
         print(filenames[i])
-        all_in_one(save_directory, directory, part, chapters[i], filenames[i])
+        all_in_one(save_directory, title, part, chapters[i], filenames[i])
 
-chapter_all_in_one()
+
+def part_all_in_one():
+    save_directory = "E:\패스트캠퍼스 강의"
+    # 영상 큰 제목 입력
+    title = changeName(input("title : "))
+    all_parts_chapters_filenames = []
+
+    for i in range(int(input("몇개의 파트인가요?"))):
+        part = changeName(input("subdirectory(Part) : "))
+        for j in range(int(input("몇개의 챕터인가요?"))):
+            chapter = changeName(input("subsubdirectory(Chapter) : "))
+            file_names = []
+            for k in range(int(input("몇개의 파일인가요?"))):
+                file_names.append(changeName(input("파일 이름을 입력하세요 : ")) + ".mp4")
+                print("")
+            print("")
+
+            all_parts_chapters_filenames.append([part, chapter, file_names])
+
+    time.sleep(10)
+
+    for part, chapter, file_names in all_parts_chapters_filenames:
+        # print([part, chapter, file_names])
+        all_in_one(save_directory, title, part, chapter, file_names)
+
+
+part_all_in_one()
+
+# chapter_all_in_one()
+
 
 # 좌표구하기2()
