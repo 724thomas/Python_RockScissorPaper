@@ -1,18 +1,7 @@
-from PIL import ImageGrab, ImageOps
-import winsound
-from numpy import *
-from pyautogui import *
-import pyautogui
+
 import time
 import keyboard
-from pynput.keyboard import Key, Controller
-import random
-import win32api, win32con
-import pyautogui
-from skimage.feature import hog
-import cv2
-import numpy as np
-from PIL import Image
+
 
 
 def 동바산(i):
