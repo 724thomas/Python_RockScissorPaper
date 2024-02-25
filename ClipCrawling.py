@@ -238,10 +238,11 @@ def all_in_one(save_directory, title, part, chapter, filenames):
         toggleJavaScript()  # Disbale JavaScript
         time.sleep(1)
 
-        NrightClick(501, 610, 2)
-        NleftClick(585, 703, 2)
+        NrightClick(672, 514, 2)  # 우클릭
+        NleftClick(762, 597, 2)  # 다른 이름으로 저장
 
-        while trainColorGrab((12, 8, 147, 26)) not in (19209, 18376):
+        # while trainColorGrab((12, 8, 147, 26)) not in (19209, 18376, 18699):
+        while trainColorGrab((10, 6, 30, 21)) not in (0, 13945):
             time.sleep(1)
         time.sleep(1)
 
@@ -250,7 +251,8 @@ def all_in_one(save_directory, title, part, chapter, filenames):
         time.sleep(0.5)
         keyboard.press_and_release('enter')
 
-        NleftClick(1380, 436, 2)  # 파일 이름 입력창 클릭
+        # NleftClick(1380, 436, 2)  # 파일 이름 입력창 클릭
+        NleftClick(1254, 980, 2)
         keyboard.write(filenames[i])
         time.sleep(0.5)
         keyboard.press_and_release('enter')
@@ -314,9 +316,277 @@ def part_all_in_one():
         all_in_one(save_directory, title, part, chapter, file_names)
 
 
-part_all_in_one()
+# part_all_in_one()
 
-# chapter_all_in_one()
-
-
+# trainColorGrab((48,251,544,273))
+# time.sleep(0.5)
 # 좌표구하기2()
+# trainColorGrab((0,252,187,277))
+
+# while trainColorGrab((48, 251, 544, 273)) not in range(17865, 17875):
+#     if keyboard.is_pressed('e') == True:
+#         break
+#     NleftClick(752, 783, 0.1)
+#     mousePos((40, 138))
+#     # mousePos((130, 286))
+#     mousePos((30, 186))
+#     time.sleep(0.1)
+#
+#
+# '''
+# mousePos((30, 186))
+# mousePos((40, 138))
+
+def change_bag(x, y):
+    mousePos((780, 712))
+    NleftClick(781, 713, 1)
+    NleftClick(x, y, 1)
+    NleftClick(781, 713, 1)
+    same_count = 0
+
+
+def all_res_LC():
+    count = 0
+    same_count = 0
+    bag_idx = 0
+    same_check = 0
+    shimmering = -1
+    while True or count < 9:
+        y = [1420, 1470, 1520, 1570, 1620, 1670, 1720, 1770, 1820, 1870]
+        deposit_x = 434
+        take_out_x = 730
+        bag_x = 514
+        # while trainColorGrab((12,282,501,308)) != 54917:
+        # 21709 , 10795
+        # while not (shimmering == 21709 and trainColorGrab((65, 199, 238, 226)) in (0, 1)):
+        while shimmering != 19622 or trainColorGrab((9, 203, 490, 225)) != 17422:
+            # while not (shimmering == 21709
+            shimmering = trainColorGrab((9, 203, 590, 225))
+            if shimmering == same_check:
+                same_count += 1
+                print("same", same_count)
+                if same_count == 15:
+                    print("depleted")
+                    change_bag(y[bag_idx], bag_x)
+                    bag_idx += 1
+                    same_count = 0
+            else:
+                same_count = 0
+                same_check = shimmering
+
+            if keyboard.is_pressed('e') == True:
+                break
+            NleftClick(752, 783, 0.03)
+            mousePos((30, 186))
+            mousePos((40, 138))
+            time.sleep(0.05)
+
+        if keyboard.is_pressed('e') == True:
+            break
+
+        NleftClick(43, 170, 1)
+        NleftClick(y[count], take_out_x, 1)
+        count += 1
+        NleftClick(y[count], deposit_x, 1)
+        NleftClick(43, 170, 1)
+        NleftClick(752, 783, 0.03)
+        mousePos((30, 186))
+        mousePos((40, 138))
+        shimmering = trainColorGrab((16, 201, 597, 225))
+        # '''
+
+
+def jewelIASAR():
+    while True:
+        # while trainColorGrab((569,232,599,419)) in range(8510, 8530):
+        #     if keyboard.is_pressed('e') == True:
+        #         break
+        #     NleftClick(752, 783, 0.1)
+        #     mousePos((40, 138))
+        #     mousePos((30, 186))
+        #     time.sleep(0.1)
+        # while trainColorGrab((0,252,187,277)) not in (11444,11273) or trainColorGrab((517,230,551,411)) in range(9063, 9067):
+        while trainColorGrab((538, 459, 794, 483)) != 13329 or trainColorGrab((583, 534, 791, 561)) != 13000:
+            if keyboard.is_pressed('e') == True:
+                break
+            NleftClick(752, 783, 0.04)
+            mousePos((768, 664))
+            mousePos((780, 664))
+            time.sleep(0.05)
+        if keyboard.is_pressed('e') == True:
+            break
+
+
+def find_set():
+    while True:
+        if keyboard.is_pressed('e') == True:
+            break
+        elif keyboard.is_pressed('w') == True:
+            x, y = win32api.GetCursorPos()
+            NleftClick(x, y, 0.05)
+            NleftClick(1444, 433, 0.05)
+            NrightClick(1444, 433, 0.05)
+            NleftClick(757, 783, 0.05)
+            # NleftClick(163, 143, 0.05)
+            NleftClick(265, 148, 0.05)
+            keyboard.press_and_release('esc')
+            NleftClick(x, y, 0.05)
+            mousePos((x + 99, y))
+            time.sleep(0.05)
+
+
+def find_cd_ias_jewwl():
+    while True:
+        if keyboard.is_pressed('e') == True:
+            break
+        if trainColorGrab((571, 453, 784, 474)) == 10262 and trainColorGrab((579, 535, 784, 565)) == 13534:
+            NleftClick(779, 664, 1)
+            NleftClick(46, 118, 1)
+            if trainColorGrab((338, 213, 392, 237)) not in (0, 10486, 6647):
+                break
+        else:
+            NleftClick(763, 789, 0.02)
+            mousePos((779, 664))
+            time.sleep(0.05)
+    for _ in range(3):
+        winsound.Beep(600, 200)
+
+
+def qol_stack():
+    while True:
+        if keyboard.is_pressed('+') == True:
+            keyboard.press_and_release('u')
+            x = 1416
+            y = 410
+            diff = 49
+            time.sleep(0.3)
+            keyboard.press("ctrl")
+            for i in range(6):
+                for j in range(4):
+                    # mousePos(((x-5)+(i*diff), (y-5)+(j*diff), (x+5)+(i*diff), (y+5)+(j*diff)))
+                    item = trainColorGrab(
+                        ((x - 5) + (i * diff), (y - 5) + (j * diff), (x + 5) + (i * diff), (y + 5) + (j * diff)))
+                    if item != 107:
+                        NleftClick(x + (i * diff), y + (j * diff), 0.05)
+                        NleftClick(757, 790, 0.05)
+            keyboard.release("ctrl")
+            keyboard.press_and_release('esc')
+
+
+# trainColorGrab((538,459,794,483))
+# change_bag(1420, 514)
+# trainColorGrab((16, 201, 597, 225)) #21670
+# trainColorGrab((65, 199, 238, 226)) # 10795):
+
+# trainColorGrab((9, 203, 590, 225))
+# trainColorGrab((9, 203, 490, 225))
+all_res_LC()
+# 좌표구하기()
+# trainColorGrab((15, 207, 449, 312))
+# jewelIASAR()
+# time.sleep(2)
+# find_cd_ias_jewwl()
+
+# qol_stack()
+
+# mousePos((1177, 386))
+# 좌표구하기()
+
+
+def javGC():
+    while True:
+        # while trainColorGrab((569,232,599,419)) in range(8510, 8530):
+        #     if keyboard.is_pressed('e') == True:
+        #         break
+        #     NleftClick(752, 783, 0.1)
+        #     mousePos((40, 138))
+        #     mousePos((30, 186))
+        #     time.sleep(0.1)
+        # while trainColorGrab((0,252,187,277)) not in (11444,11273) or trainColorGrab((517,230,551,411)) in range(9063, 9067):
+        while trainColorGrab((8, 251, 400, 279)) != 18033:
+            if keyboard.is_pressed('e') == True:
+                break
+            NleftClick(752, 783, 0.03)
+            mousePos((40, 138))
+            mousePos((30, 186))
+            time.sleep(0.05)
+        if keyboard.is_pressed('e') == True:
+            break
+
+
+def amul():
+    # keyboard.press_and_release('i')
+    # time.sleep(0.2)
+    NrightClick(1834, 728, 1)
+    for i in range(7):
+        큐브넣기(1421, 460 + (i * 49))
+        NleftClick(757, 790, 0.05)
+        keyboard.press("ctrl")
+        NleftClick(781, 711, 0.05)
+        keyboard.release("ctrl")
+    for i in range(8):
+        큐브넣기(1616, 408 + (i * 49))
+        NleftClick(757, 790, 0.05)
+        keyboard.press("ctrl")
+        NleftClick(781, 711, 0.05)
+        keyboard.release("ctrl")
+
+
+def 큐브넣기(x, y):
+    keyboard.press("ctrl")
+    for i in range(4):
+        NleftClick(x + (i * 49), y, 0.05)
+    keyboard.release("ctrl")
+
+def 종료와재접(x):
+    NleftClick(820, 1052, 1)
+    NleftClick(966, 545, 2)
+    while trainColorGrab((1663, 953, 1877, 1016)) == 13482:
+        time.sleep(1)
+    time.sleep(2)
+
+    for i in range(x):
+        keyboard.press_and_release('down')
+        time.sleep(0.05)
+    NleftClick(1043, 993, 2)
+    while trainColorGrab((1663, 953, 1877, 1016)) == 13482:
+        time.sleep(1)
+    time.sleep(2)
+
+def 창고가기():
+    mousePos((888, 257))
+    time.sleep(0.01)
+    mousePos((890, 259))
+    time.sleep(0.01)
+    NleftClick(889, 258,0.01)
+    NleftClick(889, 258,3)
+    NleftClick(760, 93,3)
+
+def 창고로옮기기():
+    keyboard.press("ctrl")
+    for i in range(7):
+        NleftClick(1421+(49*3), 460 + (i * 49), 0.05)
+    for i in range(8):
+        NleftClick(1616+(49*3), 408 + (i * 49), 0.05)
+    keyboard.release("ctrl")
+
+# while True:
+#     if keyboard.is_pressed('+') == True:
+#         for _ in range(10):
+#             종료와재접(11)
+#             창고가기()
+#             amul()
+#             keyboard.press_and_release('esc')
+#             창고로옮기기()
+#     elif keyboard.is_pressed('-') == True:
+#         keyboard.press("ctrl")
+#         for i in range(8):
+#             for j in range(8):
+#                 NleftClick(1418+(i*49), 413+(j*49),0.05)
+#         keyboard.release("ctrl")
+#     time.sleep(0.05)
+
+# 좌표구하기()
+# 큐브넣기(1421,559)
+# 창고가기()
+# 종료와재접(9)
